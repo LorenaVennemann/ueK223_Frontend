@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from '../components/pages/LoginPage/LoginPage';
+import PostPicture from '../components/pages/PostPicture';
 import PrivateRoute from './PrivateRoute';
 import HomePage from '../components/pages/HomePage';
 import UserTable from '../components/pages/UserPage/UserTable';
@@ -19,6 +20,7 @@ const Router = () => {
     <Routes>
       <Route path={'/'} element={<HomePage />} />
       <Route path={'/login'} element={<LoginPage />} />
+      <Route path={'/post'} element={<PostPicture />} />
 
       <Route
         path={'/users'}
