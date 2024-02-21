@@ -1,16 +1,7 @@
-import {
-  Paper,
-  Grid,
-  TextField,
-  Button,
-  Typography,
-  Link,
-  Input,
-} from "@mui/material";
-import { useContext } from "react";
+import { Paper, Grid, TextField, Button, Input } from "@mui/material";
 import default_image from "../../default_image.png";
 
-import { FastField, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
@@ -29,12 +20,9 @@ const PostPicture = () => {
   const navigate = useNavigate();
   const btnstyle = { margin: "8px 0" };
 
-  const handleSubmit = (values: {
-    image: any;
-    description: string;
-  }) => {
+  const handleSubmit = (values: { image: any; description: string }) => {
     console.log(values);
-    navigate("/")
+    navigate("/");
   };
   return (
     <Grid>
@@ -52,10 +40,7 @@ const PostPicture = () => {
         >
           {(props) => (
             <Form onSubmit={props.handleSubmit}>
-              <Input
-                type="file"
-                name="image1"
-              />
+              <Input type="file" name="image1" />
               {props.errors.image && (
                 <div id="feedback">{props.errors.image}</div>
               )}
