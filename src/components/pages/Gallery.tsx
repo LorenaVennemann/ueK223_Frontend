@@ -1,27 +1,47 @@
-import { Paper, Grid, TextField, Button, Input } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Grid, Card, CardMedia, CardContent, Typography } from "@mui/material";
+import PostService from "../../Services/PostService";
 
-import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
+const ImageGalleryPage = () => {
+  const [posts, setPosts] = useState([]);
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string(),
-  password: Yup.string(),
-});
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await PostService.getAllPosts();
+        setPosts(response.data);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
 
-const DisplayGallery = () => {
-  const paperStyle = {
-    padding: 20,
-    height: "70vh",
-    width: 280,
-    margin: "20px auto",
-  };
-  const btnstyle = { margin: "8px 0" };
+    fetchPosts();
+  }, []);
 
   return (
-    <Grid>
-      
-    </Grid>
+    <>
+      <div>Title of the page</div>
+      <Grid container spacing={2}>
+        {posts.map((post) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={post["author_id"]}>
+            <Card>
+              <CardMedia
+                component="img"
+                alt={post["author"]}
+                height="140"
+                image={post["image"]}
+              />
+              <CardContent>
+                <Typography variant="h6" component="div">
+                  {post["author"]}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </>
   );
 };
 
-export default DisplayGallery;
+export default ImageGalleryPage;
