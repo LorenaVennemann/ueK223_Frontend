@@ -1,5 +1,4 @@
 import { Paper, Grid, TextField, Button, Input } from "@mui/material";
-import default_image from "../../default_image.png";
 
 import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +19,7 @@ const PostPicture = () => {
   const navigate = useNavigate();
   const btnstyle = { margin: "8px 0" };
 
-  const handleSubmit = (values: { image: any; description: string }) => {
+  const handleSubmit = (values: { image: any; description: string; author: string; author_id: number; like_count: number; }) => {
     console.log(values);
     navigate("/");
   };
@@ -29,8 +28,11 @@ const PostPicture = () => {
       <Paper elevation={10} style={paperStyle}>
         <Formik
           initialValues={{
-            image: default_image,
+            image: null,
             description: "",
+            author: "",
+            author_id: 0,
+            like_count: 0
           }}
           enableReinitialize
           validationSchema={validationSchema}
@@ -43,6 +45,19 @@ const PostPicture = () => {
               <Input type="file" name="image1" />
               {props.errors.image && (
                 <div id="feedback">{props.errors.image}</div>
+              )}
+
+              <TextField
+                id="author"
+                label="author name"
+                placeholder="Enter the name of the author"
+                fullWidth
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                value={props.values.author}
+              />
+              {props.errors.author && (
+                <div id="feedback">{props.errors.author}</div>
               )}
 
               <TextField
