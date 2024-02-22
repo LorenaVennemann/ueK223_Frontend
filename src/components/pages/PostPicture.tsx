@@ -1,13 +1,6 @@
 import { Paper, Grid, TextField, Button, Input } from "@mui/material";
-
 import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string(),
-  password: Yup.string(),
-});
 
 const PostPicture = () => {
   const paperStyle = {
@@ -19,30 +12,41 @@ const PostPicture = () => {
   const navigate = useNavigate();
   const btnstyle = { margin: "8px 0" };
 
-  const handleSubmit = (values: { image: any; description: string; author: string; author_id: number; like_count: number; }) => {
+  const handleSubmit = (values: { image: string; description: string; author: string; author_id: number; like_count: number; }) => {
     console.log(values);
     navigate("/");
   };
+
+  const handleImageChange = (event: any, setFieldValue: any) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setFieldValue("image", reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
         <Formik
           initialValues={{
-            image: null,
+            image: "",
             description: "",
             author: "",
             author_id: 0,
             like_count: 0
           }}
           enableReinitialize
-          validationSchema={validationSchema}
           onSubmit={handleSubmit}
           validateOnChange
           isInitialValid
         >
           {(props) => (
             <Form onSubmit={props.handleSubmit}>
-              <Input type="file" name="image1" />
+              <Input type="file" name="image1" onChange={(event) => handleImageChange(event, props.setFieldValue)} />
               {props.errors.image && (
                 <div id="feedback">{props.errors.image}</div>
               )}
