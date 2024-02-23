@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { User } from '../../../types/models/User.model';
+import { User } from '../../types/models/User.model';
 import { Box, Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { object, string } from 'yup';

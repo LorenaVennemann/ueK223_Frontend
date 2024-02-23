@@ -1,8 +1,13 @@
 import { Paper, TextField, Button, Input } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD:src/components/pages/PostImage.tsx
 import Navbar from "../organisms/Navbar";
 import PostService from "../../Services/PostService";
+=======
+import PostService from "../../../Services/PostService";
+import Navbar from "../../organisms/Navbar";
+>>>>>>> ece697106dd13d15125329e766da86050a6bf968:src/components/pages/NewPages/PostImage.tsx
 
 function genUniqueId(): string {
   const dateStr = Date.now().toString(36);
@@ -62,10 +67,17 @@ const PostPicture = () => {
               fullWidth
               onChange={props.handleChange}
               onBlur={props.handleBlur}
+<<<<<<< HEAD:src/components/pages/PostImage.tsx
               value={props.values.image_url}
             />
             {props.errors.image_url && (
               <div id="feedback">{props.errors.image_url}</div>
+=======
+              value={props.values.description}
+            />
+            {props.errors.description && (
+              <div id="feedback">{props.errors.description}</div>
+>>>>>>> ece697106dd13d15125329e766da86050a6bf968:src/components/pages/NewPages/PostImage.tsx
             )}
             <TextField
               id="description"
