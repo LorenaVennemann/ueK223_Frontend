@@ -24,7 +24,7 @@ const PostPicture = () => {
 
   const handleSubmit = async (values: {
     id: string;
-    image: "";
+    image_url: "";
     description: "";
     author: "";
     author_id: 0;
@@ -39,23 +39,12 @@ const PostPicture = () => {
     }
   };
 
-  const handleImageChange = (event: any, setFieldValue: any) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setFieldValue("image", reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   return (
     <Paper elevation={10} style={paperStyle}>
       <Formik
         initialValues={{
           id: genUniqueId(),
-          image: "",
+          image_url: "",
           description: "",
           author: "",
           author_id: 0,
@@ -68,15 +57,17 @@ const PostPicture = () => {
       >
         {(props) => (
           <Form onSubmit={props.handleSubmit}>
-            <Input
-              type="file"
-              name="image1"
-              onChange={(event) =>
-                handleImageChange(event, props.setFieldValue)
-              }
+            <TextField
+              id="image_url"
+              label="Image URL"
+              placeholder="Enter the URL of the image"
+              fullWidth
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.description}
             />
-            {props.errors.image && (
-              <div id="feedback">{props.errors.image}</div>
+            {props.errors.description && (
+              <div id="feedback">{props.errors.description}</div>
             )}
             <TextField
               id="description"
