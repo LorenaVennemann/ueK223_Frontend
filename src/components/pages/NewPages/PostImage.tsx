@@ -1,13 +1,13 @@
-import { Paper, Grid, TextField, Button, Input } from "@mui/material";
+import { Paper, TextField, Button, Input } from "@mui/material";
 import { Form, Formik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
-import PostService from "../../Services/PostService";
-import Navbar from "../organisms/Navbar";
+import { useNavigate } from "react-router-dom";
+import PostService from "../../../Services/PostService";
+import Navbar from "../../organisms/Navbar";
 
 function genUniqueId(): string {
-  const dateStr = Date.now().toString(36); 
+  const dateStr = Date.now().toString(36);
 
-  const randomStr = Math.random().toString(36).substring(2, 8); 
+  const randomStr = Math.random().toString(36).substring(2, 8);
 
   return `${dateStr}-${randomStr}`;
 }

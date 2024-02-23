@@ -3,8 +3,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
-import { User } from '../../../types/models/User.model';
-import UserService from '../../../Services/UserService';
+import { User } from '../../../../types/models/User.model';
+import UserService from '../../../../Services/UserService';
 import { useNavigate } from 'react-router-dom';
 
 const UserTable = () => {
