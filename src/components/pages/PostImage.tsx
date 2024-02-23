@@ -1,13 +1,13 @@
-import { Paper, Grid, TextField, Button, Input } from "@mui/material";
+import { Paper, TextField, Button, Input } from "@mui/material";
 import { Form, Formik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
-import PostService from "../../Services/PostService";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../organisms/Navbar";
+import PostService from "../../Services/PostService";
 
 function genUniqueId(): string {
-  const dateStr = Date.now().toString(36); 
+  const dateStr = Date.now().toString(36);
 
-  const randomStr = Math.random().toString(36).substring(2, 8); 
+  const randomStr = Math.random().toString(36).substring(2, 8);
 
   return `${dateStr}-${randomStr}`;
 }
@@ -24,10 +24,9 @@ const PostPicture = () => {
 
   const handleSubmit = async (values: {
     id: string;
-    image: "";
+    image_url: "";
     description: "";
-    author: "";
-    author_id: 0;
+    author_id: "";
     like_count: 0;
   }) => {
     try {
@@ -39,26 +38,14 @@ const PostPicture = () => {
     }
   };
 
-  const handleImageChange = (event: any, setFieldValue: any) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setFieldValue("image", reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   return (
     <Paper elevation={10} style={paperStyle}>
       <Formik
         initialValues={{
           id: genUniqueId(),
-          image: "",
+          image_url: "",
           description: "",
-          author: "",
-          author_id: 0,
+          author_id: "",
           like_count: 0,
         }}
         enableReinitialize
@@ -68,15 +55,17 @@ const PostPicture = () => {
       >
         {(props) => (
           <Form onSubmit={props.handleSubmit}>
-            <Input
-              type="file"
-              name="image1"
-              onChange={(event) =>
-                handleImageChange(event, props.setFieldValue)
-              }
+            <TextField
+              id="image_url"
+              label="Image URL"
+              placeholder="Enter the URL of the image"
+              fullWidth
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.image_url}
             />
-            {props.errors.image && (
-              <div id="feedback">{props.errors.image}</div>
+            {props.errors.image_url && (
+              <div id="feedback">{props.errors.image_url}</div>
             )}
             <TextField
               id="description"

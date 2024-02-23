@@ -1,7 +1,7 @@
 export type Post = {
   id: string;
-  image: any;
-  author_id: number;
+  image_url: string;
+  author_id: string;
   like_count: number;
   description: string;
 };
