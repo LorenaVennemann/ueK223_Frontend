@@ -1,4 +1,4 @@
-#üK223 project group 5
+# üK223 project group 5
 
 Prerequisites:
 - Docker Desktop
