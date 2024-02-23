@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { Grid, Card, CardMedia, CardContent, Typography, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import PostService from "../../Services/PostService";
 
 const ImageGalleryPage = () => {
@@ -20,7 +21,26 @@ const ImageGalleryPage = () => {
 
   return (
     <>
-      <div>Title of the page</div>
+      <Typography variant="h6" component="div">
+        Title of the page
+      </Typography>
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item>
+          <Button variant="contained" component={Link} to="/">
+            Home
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" component={Link} to="/post">
+            Post
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" component={Link} to="/gallery">
+            Gallery
+          </Button>
+        </Grid>
+      </Grid>
       <Grid container spacing={2}>
         {posts.map((post) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={post["author_id"]}>
@@ -40,7 +60,7 @@ const ImageGalleryPage = () => {
           </Grid>
         ))}
       </Grid>
-    </>
+    </> 
   );
 };
 
