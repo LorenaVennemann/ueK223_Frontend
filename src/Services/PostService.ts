@@ -12,7 +12,7 @@ const PostService = {
   },
 
   addPost: (post: Post) => {
-    return api.post('/post/addPost', post).then((res) => {
+    return api.post('/post/add', post).then((res) => {
       return res.data;
     });
   },
