@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from '../components/pages/LoginPage/LoginPage';
-import PostPicturePage from '../components/pages/PostPicture';
+import PostPicturePage from '../components/pages/PostIage';
 import PrivateRoute from './PrivateRoute';
 import HomePage from '../components/pages/HomePage';
 import UserTable from '../components/pages/UserPage/UserTable';
