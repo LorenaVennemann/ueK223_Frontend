@@ -2,6 +2,7 @@ import { Paper, Grid, TextField, Button, Input } from "@mui/material";
 import { Form, Formik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import PostService from "../../Services/PostService";
+import Navbar from "../organisms/Navbar";
 
 function genUniqueId(): string {
   const dateStr = Date.now().toString(36); 
@@ -98,23 +99,7 @@ const PostPicture = () => {
             >
               Post
             </Button>
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item>
-                <Button variant="contained" component={Link} to="/">
-                  Home
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" component={Link} to="/post">
-                  Post
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" component={Link} to="/gallery">
-                  Gallery
-                </Button>
-              </Grid>
-            </Grid>
+            <Navbar />
           </Form>
         )}
       </Formik>
