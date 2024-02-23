@@ -76,13 +76,13 @@ const PostPicture = () => {
               {props.errors.description && (
                 <div id="feedback">{props.errors.description}</div>
               )}
-
               <Button
                 type="submit"
                 color="primary"
                 variant="contained"
                 style={btnstyle}
                 fullWidth
+                onClick={() => navigate('/gallery')}
               >
                 Post
               </Button>
