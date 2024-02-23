@@ -22,7 +22,7 @@ const ImageGalleryPage = () => {
   return (
     <>
       <Typography variant="h6" component="div">
-        Title of the page
+        Gallery 
       </Typography>
       <Grid container spacing={2} justifyContent="center">
         <Grid item>
