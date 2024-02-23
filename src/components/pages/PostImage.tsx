@@ -77,20 +77,6 @@ const PostPicture = () => {
             {props.errors.image && (
               <div id="feedback">{props.errors.image}</div>
             )}
-
-            <TextField
-              id="author"
-              label="author name"
-              placeholder="Enter the name of the author"
-              fullWidth
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.author}
-            />
-            {props.errors.author && (
-              <div id="feedback">{props.errors.author}</div>
-            )}
-
             <TextField
               id="description"
               label="description"
