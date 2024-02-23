@@ -1,6 +1,6 @@
 import { Paper, Grid, TextField, Button, Input } from "@mui/material";
 import { Form, Formik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const PostPicture = () => {
   const paperStyle = {
@@ -29,7 +29,13 @@ const PostPicture = () => {
   };
 
   return (
-    <Grid>
+    <Grid 
+    container
+    direction="column"
+    justifyContent="center"
+    alignItems="center"
+    style={{ minHeight: '100vh'}}
+    >
       <Paper elevation={10} style={paperStyle}>
         <Formik
           initialValues={{
@@ -85,7 +91,24 @@ const PostPicture = () => {
                 onClick={() => navigate('/gallery')}
               >
                 Post
-              </Button>
+                </Button>
+              <Grid container spacing={2} justifyContent='center'>
+                <Grid item>
+                  <Button variant='contained' component={Link} to='/'>
+                    Home
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant='contained' component={Link} to='/post'>
+                    Post
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant='contained' component={Link} to='/gallery'>
+                    Gallery
+                  </Button>
+                </Grid>
+              </Grid>
             </Form>
           )}
         </Formik>
