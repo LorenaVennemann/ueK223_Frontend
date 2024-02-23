@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import Navbar from "../organisms/Navbar";
-import { Grid, Card, CardMedia, CardContent, Typography, Button } from "@mui/material";
+import {
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import PostService from "../../Services/PostService";
 
@@ -25,7 +32,6 @@ const ImageGalleryPage = () => {
       <Typography variant="h6" component="div">
         Title of the page
       </Typography>
-      <Navbar/>
       <Grid container spacing={2}>
         {posts.map((post) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={post["author_id"]}>
@@ -43,9 +49,11 @@ const ImageGalleryPage = () => {
               </CardContent>
             </Card>
           </Grid>
+          
         ))}
       </Grid>
-    </> 
+      <Navbar />
+    </>
   );
 };
 

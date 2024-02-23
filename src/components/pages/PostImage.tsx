@@ -2,11 +2,12 @@ import { Paper, Grid, TextField, Button, Input } from "@mui/material";
 import { Form, Formik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import PostService from "../../Services/PostService";
+import Navbar from "../organisms/Navbar";
 
 function genUniqueId(): string {
-  const dateStr = Date.now().toString(36); // convert num to base 36 and stringify
+  const dateStr = Date.now().toString(36);
 
-  const randomStr = Math.random().toString(36).substring(2, 8); // start at index 2 to skip decimal point
+  const randomStr = Math.random().toString(36).substring(2, 8);
 
   return `${dateStr}-${randomStr}`;
 }
@@ -30,14 +31,12 @@ const PostPicture = () => {
     like_count: 0;
   }) => {
     try {
-      // Use PostService to add a new post
       await PostService.addPost(values);
 
       console.log("Post added successfully:", values);
       navigate("/");
     } catch (error) {
       console.error("Error adding post:", error);
-      // Handle error, show error message to the user, etc.
     }
   };
 
@@ -102,23 +101,7 @@ const PostPicture = () => {
             >
               Post
             </Button>
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item>
-                <Button variant="contained" component={Link} to="/">
-                  Home
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" component={Link} to="/post">
-                  Post
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" component={Link} to="/gallery">
-                  Gallery
-                </Button>
-              </Grid>
-            </Grid>
+            <Navbar />
           </Form>
         )}
       </Formik>
