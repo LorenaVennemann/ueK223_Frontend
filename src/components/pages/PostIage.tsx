@@ -1,6 +1,15 @@
 import { Paper, Grid, TextField, Button, Input } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
+import PostService from "../../Services/PostService";
+
+function genUniqueId(): string {
+  const dateStr = Date.now().toString(36); // convert num to base 36 and stringify
+
+  const randomStr = Math.random().toString(36).substring(2, 8); // start at index 2 to skip decimal point
+
+  return `${dateStr}-${randomStr}`;
+}
 
 const PostPicture = () => {
   const paperStyle = {
@@ -12,9 +21,24 @@ const PostPicture = () => {
   const navigate = useNavigate();
   const btnstyle = { margin: "8px 0" };
 
-  const handleSubmit = (values: { image: string; description: string; author: string; author_id: number; like_count: number; }) => {
-    console.log(values);
-    navigate("/");
+  const handleSubmit = async (values: {
+    id: string;
+    image: "";
+    description: "";
+    author: "";
+    author_id: 0;
+    like_count: 0;
+  }) => {
+    try {
+      // Use PostService to add a new post
+      await PostService.addPost(values);
+
+      console.log("Post added successfully:", values);
+      navigate("/");
+    } catch (error) {
+      console.error("Error adding post:", error);
+      // Handle error, show error message to the user, etc.
+    }
   };
 
   const handleImageChange = (event: any, setFieldValue: any) => {
@@ -33,11 +57,12 @@ const PostPicture = () => {
       <Paper elevation={10} style={paperStyle}>
         <Formik
           initialValues={{
+            id: genUniqueId(),
             image: "",
             description: "",
             author: "",
             author_id: 0,
-            like_count: 0
+            like_count: 0,
           }}
           enableReinitialize
           onSubmit={handleSubmit}
@@ -46,7 +71,13 @@ const PostPicture = () => {
         >
           {(props) => (
             <Form onSubmit={props.handleSubmit}>
-              <Input type="file" name="image1" onChange={(event) => handleImageChange(event, props.setFieldValue)} />
+              <Input
+                type="file"
+                name="image1"
+                onChange={(event) =>
+                  handleImageChange(event, props.setFieldValue)
+                }
+              />
               {props.errors.image && (
                 <div id="feedback">{props.errors.image}</div>
               )}
@@ -82,7 +113,7 @@ const PostPicture = () => {
                 variant="contained"
                 style={btnstyle}
                 fullWidth
-                onClick={() => navigate('/gallery')}
+                onClick={() => navigate("/gallery")}
               >
                 Post
               </Button>
