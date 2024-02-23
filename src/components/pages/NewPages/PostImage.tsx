@@ -26,8 +26,7 @@ const PostPicture = () => {
     id: string;
     image_url: "";
     description: "";
-    author: "";
-    author_id: 0;
+    author_id: "";
     like_count: 0;
   }) => {
     try {
@@ -46,8 +45,7 @@ const PostPicture = () => {
           id: genUniqueId(),
           image_url: "",
           description: "",
-          author: "",
-          author_id: 0,
+          author_id: "",
           like_count: 0,
         }}
         enableReinitialize
