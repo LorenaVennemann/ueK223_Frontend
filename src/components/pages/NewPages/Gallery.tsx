@@ -46,6 +46,7 @@ const ImageGalleryPage = () => {
                   variant="outlined"
                   component={Link}
                   to={`/update-post/`}
+                  state={post}
                 >
                   Edit
                 </Button>

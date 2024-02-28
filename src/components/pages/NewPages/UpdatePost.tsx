@@ -1,21 +1,21 @@
 import React, { useContext, useState } from "react";
 import { Paper, TextField, Button } from "@mui/material";
 import { Form, Formik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PostService from "../../../Services/PostService";
 import Navbar from "../../organisms/Navbar";
 import ActiveUserContext from "../../../Contexts/ActiveUserContext";
+import { LocalGasStation } from "@mui/icons-material";
 
 const UpdatePost: React.FC = () => {
   const { user} = useContext(ActiveUserContext)
-  const [postId, setPostId] = useState("");
   const navigate = useNavigate();
-
+  const location = useLocation();
   const handleSubmit = async (values: {
     id: string;
-    image_url: string;
+    image: string;
     description: string;
-    author_id: string | undefined;
+    author_id: string;
     like_count: number;
   }) => {
     try {
@@ -39,11 +39,11 @@ const UpdatePost: React.FC = () => {
     <Paper elevation={10} style={paperStyle}>
       <Formik
         initialValues={{
-          id: postId,
-          image_url: "",
-          description: "",
-          author_id: user?.id,
-          like_count: 0,
+          id: location.state.id,
+          image: location.state.image,
+          description: location.state.description,
+          author_id: location.state.id,
+          like_count: location.state.like_count,
         }}
         enableReinitialize
         onSubmit={handleSubmit}
@@ -53,20 +53,12 @@ const UpdatePost: React.FC = () => {
         {(props) => (
           <Form onSubmit={props.handleSubmit}>
             <TextField
-              id="postId"
-              label="Post ID"
-              placeholder="Enter the ID of the post"
-              fullWidth
-              onChange={(e) => setPostId(e.target.value)}
-              value={postId}
-            />
-            <TextField
-              id="image_url"
+              id="image"
               label="Image URL"
               placeholder="Enter the URL of the image"
               fullWidth
               onChange={props.handleChange}
-              value={props.values.image_url}
+              value={props.values.image}
             />
             <TextField
               id="description"

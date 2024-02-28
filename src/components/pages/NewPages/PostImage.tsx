@@ -20,9 +20,9 @@ const PostPicture = () => {
 
   const handleSubmit = async (values: {
     id: string;
-    image_url: string;
+    image: string;
     description: string;
-    author_id: string | undefined;
+    author_id: string;
     like_count: 0;
   }) => {
     try {
@@ -39,9 +39,9 @@ const PostPicture = () => {
       <Formik
         initialValues={{
           id: "",
-          image_url: "",
+          image: "",
           description: "",
-          author_id: user?.id,
+          author_id: user!.id,
           like_count: 0,
         }}
         enableReinitialize
@@ -52,16 +52,16 @@ const PostPicture = () => {
         {(props) => (
           <Form onSubmit={props.handleSubmit}>
             <TextField
-              id="image_url"
+              id="image"
               label="Image URL"
               placeholder="Enter the URL of the image"
               fullWidth
               onChange={props.handleChange}
               onBlur={props.handleBlur}
-              value={props.values.image_url}
+              value={props.values.image}
             />
-            {props.errors.image_url && (
-              <div id="feedback">{props.errors.image_url}</div>
+            {props.errors.image && (
+              <div id="feedback">{props.errors.image}</div>
             )}
             <TextField
               id="description"
