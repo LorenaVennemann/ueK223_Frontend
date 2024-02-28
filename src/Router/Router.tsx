@@ -24,7 +24,7 @@ const Router = () => {
       <Route path={"/"} element={<HomePage />} />
       <Route path={"/login"} element={<LoginPage />} />
       <Route path={"/post"} element={<PostPicturePage />} />
-      <Route path={"/gallery"} element={<Gallery user={undefined} />} />
+      <Route path={"/gallery"} element={<Gallery />} />
       <Route path={"/update-post"} element={<UpdatePost />} />
 
       <Route

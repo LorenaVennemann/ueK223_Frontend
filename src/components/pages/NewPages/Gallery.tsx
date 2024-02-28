@@ -4,7 +4,7 @@ import { Grid, Card, CardMedia, CardContent, Typography, Button } from "@mui/mat
 import PostService from "../../../Services/PostService";
 import { Link } from "react-router-dom";
 
-const ImageGalleryPage = ({ user }) => {
+const ImageGalleryPage = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const ImageGalleryPage = ({ user }) => {
     fetchPosts();
   }, []);
 
-  const handleDelete = async (postId) => {
+  const handleDelete = async (postId: string) => {
     try {
       await PostService.deletePost(postId);
       setPosts(posts.filter(post => post.id !== postId));
@@ -62,7 +62,7 @@ const ImageGalleryPage = ({ user }) => {
                 <Button
                   variant="outlined"
                   component={Link}
-                  to={`/update-post/${post.id}`}
+                  to={`/update-post/`}
                 >
                   Edit
                 </Button>
