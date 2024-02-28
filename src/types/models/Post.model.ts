@@ -1,5 +1,5 @@
 export type Post = {
-  id: any;
+  id: string;
   image_url: string;
   author_id: string | undefined;
   like_count: number;
