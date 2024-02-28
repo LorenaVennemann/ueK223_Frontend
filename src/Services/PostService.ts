@@ -1,4 +1,3 @@
-import { red } from '@mui/material/colors';
 import api from '../config/Api';
 import { Post } from '../types/models/Post.model';
 
