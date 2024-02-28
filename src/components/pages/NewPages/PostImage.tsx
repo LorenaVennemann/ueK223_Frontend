@@ -19,8 +19,9 @@ const PostPicture = () => {
   const btnstyle = { margin: "8px 0" };
 
   const handleSubmit = async (values: {
-    image_url: "";
-    description: "";
+    id: string;
+    image_url: string;
+    description: string;
     author_id: string | undefined;
     like_count: 0;
   }) => {
@@ -37,6 +38,7 @@ const PostPicture = () => {
     <Paper elevation={10} style={paperStyle}>
       <Formik
         initialValues={{
+          id: "",
           image_url: "",
           description: "",
           author_id: user?.id,
