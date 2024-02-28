@@ -6,7 +6,6 @@ import HomePage from "../components/pages/NewPages/HomePage";
 import UserTable from "../components/pages/PredefinedPages/UserPage/UserTable";
 import UserPage from "../components/pages/PredefinedPages/UserPage/UserPage";
 import authorities from "../config/Authorities";
-import ImageGalleryPage from "../components/pages/NewPages/Gallery";
 import UpdatePost from "../components/pages/NewPages/UpdatePost";
 import Gallery from "../components/pages/NewPages/Gallery";
 
