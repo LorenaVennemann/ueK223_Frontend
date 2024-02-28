@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Paper, TextField, Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import PostService from "../../../Services/PostService";
 import Navbar from "../../organisms/Navbar";
+import ActiveUserContext from "../../../Contexts/ActiveUserContext";
 
 const UpdatePost: React.FC = () => {
+  const { user} = useContext(ActiveUserContext)
   const [postId, setPostId] = useState("");
   const navigate = useNavigate();
 
@@ -13,7 +15,7 @@ const UpdatePost: React.FC = () => {
     id: string;
     image_url: string;
     description: string;
-    author_id: string;
+    author_id: string | undefined;
     like_count: number;
   }) => {
     try {
@@ -40,7 +42,7 @@ const UpdatePost: React.FC = () => {
           id: postId,
           image_url: "",
           description: "",
-          author_id: "",
+          author_id: user?.id,
           like_count: 0,
         }}
         enableReinitialize

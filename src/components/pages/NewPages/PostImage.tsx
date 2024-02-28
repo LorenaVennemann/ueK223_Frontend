@@ -3,16 +3,12 @@ import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import PostService from "../../../Services/PostService";
 import Navbar from "../../organisms/Navbar";
-
-function genUniqueId(): string {
-  const dateStr = Date.now().toString(36);
-
-  const randomStr = Math.random().toString(36).substring(2, 8);
-
-  return `${dateStr}-${randomStr}`;
-}
+import { useContext } from "react";
+import ActiveUserContext from "../../../Contexts/ActiveUserContext";
 
 const PostPicture = () => {
+  const { user } = useContext(ActiveUserContext);
+
   const paperStyle = {
     padding: 20,
     height: "70vh",
@@ -23,10 +19,9 @@ const PostPicture = () => {
   const btnstyle = { margin: "8px 0" };
 
   const handleSubmit = async (values: {
-    id: string;
     image_url: "";
     description: "";
-    author_id: "";
+    author_id: string | undefined;
     like_count: 0;
   }) => {
     try {
@@ -42,10 +37,9 @@ const PostPicture = () => {
     <Paper elevation={10} style={paperStyle}>
       <Formik
         initialValues={{
-          id: genUniqueId(),
           image_url: "",
           description: "",
-          author_id: "",
+          author_id: user?.id,
           like_count: 0,
         }}
         enableReinitialize
