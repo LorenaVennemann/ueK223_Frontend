@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Navbar from "../../organisms/Navbar";
 import {
   Grid,
@@ -11,12 +11,15 @@ import {
 import PostService from "../../../Services/PostService";
 import { Link } from "react-router-dom";
 import LikeButton from "../../atoms/LikeButton";
+import ActiveUserContext from "../../../Contexts/ActiveUserContext";
 
 const ImageGalleryPage = () => {
   const [posts, setPosts] = useState([]);
   const reloadPage = () => {
     window.location.reload();
   };
+
+  const { user } = useContext(ActiveUserContext);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -68,7 +71,7 @@ const ImageGalleryPage = () => {
                   variant="outlined"
                   color="error"
                   onClick={() => {
-                    PostService.deletePost(post["id"]).then(reloadPage);
+                      PostService.deletePost(post["id"]).then(reloadPage);
                   }}
                 >
                   Delete

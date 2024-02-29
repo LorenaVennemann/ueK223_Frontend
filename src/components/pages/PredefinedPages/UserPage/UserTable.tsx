@@ -30,6 +30,7 @@ const UserTable = () => {
         <div key={user.id}>
           <Card sx={{ minWidth: 275 }}>
             <CardContent>
+              
               {user.firstName} {user.lastName} {user.email}
               <CardActions>
                 <Button
