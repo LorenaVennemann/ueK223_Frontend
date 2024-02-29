@@ -29,3 +29,7 @@ yarn start
 
 To see the swagger documentation you must start the project and go to the following link:
 http://localhost:8080/myapi/swagger-ui/index.html#/
+
+Lighthouse testing resault:
+
+![](./image.png)
