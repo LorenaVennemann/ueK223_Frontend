@@ -3,6 +3,7 @@ import Navbar from "../../organisms/Navbar";
 import { Grid, Card, CardMedia, CardContent, Typography, Button } from "@mui/material";
 import PostService from "../../../Services/PostService";
 import { Link } from "react-router-dom";
+import LikeButton from "../../atoms/LikeButton";
  
 const ImageGalleryPage = () => {
   const [posts, setPosts] = useState([]);
@@ -69,6 +70,7 @@ const ImageGalleryPage = () => {
                 >
                   Delete
                 </Button>
+                <LikeButton/>
               </CardContent>
             </Card>
           </Grid>
