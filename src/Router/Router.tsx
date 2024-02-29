@@ -9,6 +9,9 @@ import authorities from "../config/Authorities";
 import UpdatePost from "../components/pages/NewPages/UpdatePost";
 import Gallery from "../components/pages/NewPages/Gallery";
 
+
+
+
 /**
  * Router component renders a route switch with all available pages
  */
@@ -20,11 +23,14 @@ const Router = () => {
 
   return (
     <Routes>
-      <Route path={"/"} element={<HomePage />} />
-      <Route path={"/login"} element={<LoginPage />} />
-      <Route path={"/post"} element={<PostPicturePage />} />
-      <Route path={"/gallery"} element={<Gallery />} />
-      <Route path={"/update-post"} element={<UpdatePost />} />
+      <Routes>
+  <Route path={"/"} element={<HomePage />} />
+  <Route path={"/login"} element={<LoginPage />} />
+  <Route path={"/post"} element={<PostPicturePage />} />
+  <Route path={"/gallery"} element={<Gallery />} />
+  <Route path={"/update-post"} element={<UpdatePost />} />
+</Routes>
+
 
       <Route
         path={"/users"}

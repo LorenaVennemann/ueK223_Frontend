@@ -53,6 +53,14 @@ const UserTable = () => {
                 >
                   Delete
                 </Button>
+                <Button
+                  size='small'
+                  color='error'
+                  variant='contained'
+                  onClick={() => navigate(`/users/${user.id}/posts`)}
+                >
+                  Posts
+                </Button>
               </CardActions>
             </CardContent>
           </Card>
