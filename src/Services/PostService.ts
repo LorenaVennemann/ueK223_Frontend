@@ -26,6 +26,10 @@ const PostService = {
   deletePost: (id: string) => {
     return api.delete(`/post/${id}`);
   },
+
+  getLikersForPost: (postId: string) => {
+    return api.get(`/post/${postId}/likers`);
+  },
 };
 
 export default PostService;

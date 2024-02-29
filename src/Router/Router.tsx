@@ -10,6 +10,9 @@ import UpdatePost from "../components/pages/NewPages/UpdatePost";
 import Gallery from "../components/pages/NewPages/Gallery";
 import ProfilePage from "../components/pages/PredefinedPages/UserPage/ProfilePage";
 
+
+
+
 /**
  * Router component renders a route switch with all available pages
  */
