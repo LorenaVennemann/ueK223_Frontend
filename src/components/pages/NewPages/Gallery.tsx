@@ -50,6 +50,17 @@ const ImageGalleryPage = () => {
                 >
                   Edit
                 </Button>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => {
+                    PostService.deletePost(post['id']);
+                  }}
+                  component={Link}
+                  to={`/gallery/`}
+                >
+                  Delete
+                </Button>
               </CardContent>
             </Card>
           </Grid>

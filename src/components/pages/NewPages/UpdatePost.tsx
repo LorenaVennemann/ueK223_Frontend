@@ -4,11 +4,8 @@ import { Form, Formik } from "formik";
 import { useLocation, useNavigate } from "react-router-dom";
 import PostService from "../../../Services/PostService";
 import Navbar from "../../organisms/Navbar";
-import ActiveUserContext from "../../../Contexts/ActiveUserContext";
-import { LocalGasStation } from "@mui/icons-material";
 
 const UpdatePost: React.FC = () => {
-  const { user} = useContext(ActiveUserContext)
   const navigate = useNavigate();
   const location = useLocation();
   const handleSubmit = async (values: {
