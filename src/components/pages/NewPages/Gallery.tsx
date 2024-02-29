@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
  
 const ImageGalleryPage = () => {
   const [posts, setPosts] = useState([]);
- 
+  const reloadPage = () => {
+    window.location.reload();
+  }
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -40,6 +43,9 @@ const ImageGalleryPage = () => {
                   {post["author"]}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
+                  Description: {post["description"]}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
                   ID: {post["id"]}
                 </Typography>
                 <Button
@@ -54,7 +60,9 @@ const ImageGalleryPage = () => {
                   variant="outlined"
                   color="error"
                   onClick={() => {
-                    PostService.deletePost(post['id']);
+                    PostService.deletePost(post['id']).then(reloadPage);
+
+                    
                   }}
                   component={Link}
                   to={`/gallery/`}
