@@ -7,6 +7,9 @@ import { object, string } from 'yup';
 interface UserProps {
   user: User;
   submitActionHandler: (values: User) => void;
+  cancelActionHandler?: () => void;
+  isAllowedEditRoles: boolean;
+  showPasswordField: boolean;
 }
 
 const UserForm = ({ user, submitActionHandler }: UserProps) => {

@@ -8,6 +8,7 @@ import UserPage from "../components/pages/PredefinedPages/UserPage/UserPage";
 import authorities from "../config/Authorities";
 import UpdatePost from "../components/pages/NewPages/UpdatePost";
 import Gallery from "../components/pages/NewPages/Gallery";
+import ProfilePage from "../components/pages/PredefinedPages/UserPage/ProfilePage";
 
 /**
  * Router component renders a route switch with all available pages
@@ -25,6 +26,8 @@ const Router = () => {
       <Route path={"/post"} element={<PostPicturePage />} />
       <Route path={"/gallery"} element={<Gallery />} />
       <Route path={"/update-post"} element={<UpdatePost />} />
+      <Route path={"/profile"} element={<ProfilePage />} />
+      
 
       <Route
         path={"/users"}
