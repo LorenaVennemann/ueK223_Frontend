@@ -34,24 +34,12 @@ const Router = () => {
         element={<PrivateRoute requiredAuths={[]} element={<UserTable />} />}
       />
       <Route
-        path="/useredit"
-        element={
-          <PrivateRoute
-            requiredAuths={[
-              authorities.USER_DEACTIVATE,
-              authorities.USER_CREATE,
-            ]}
-            element={<UserPage />}
-          ></PrivateRoute>
-        }
+        path="/user/add"
+        element={<UserPage />}
       />
       <Route
-        path="/useredit/:userId"
-        element={
-          <PrivateRoute
-            requiredAuths={[authorities.USER_READ]}
-            element={<UserPage />}
-          ></PrivateRoute>
+        path="/useredit/"
+        element={<UserPage />
         }
       />
 

@@ -1,25 +1,26 @@
 import { Paper, TextField, Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useLocation, useNavigate } from "react-router-dom";
-import PostService from "../../../Services/PostService";
-import Navbar from "../../organisms/Navbar";
+import UserService from "../../../../Services/UserService";
+import Navbar from "../../../organisms/Navbar";
+import { Role } from "../../../../types/models/Role.model";
 
-const UpdatePost: React.FC = () => {
+const UpdateUser: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const handleSubmit = async (values: {
     id: string;
-    image: string;
-    description: string;
-    author_id: string;
-    like_count: number;
+    email: string;
+    firstName: string;
+    lastName: string;
+    roles: Role[];
   }) => {
     try {
-      await PostService.updatePost(values);
-      console.log("Post erfolgreich aktualisiert:", values);
-      navigate("/gallery");
+      await UserService.updateUser(values);
+      console.log("User erfolgreich aktualisiert:", values);
+      navigate("/users");
     } catch (error) {
-      console.error("Fehler beim Aktualisieren des Posts:", error);
+      console.error("Fehler beim Aktualisieren des Users:", error);
     }
   };
 
@@ -36,10 +37,10 @@ const UpdatePost: React.FC = () => {
       <Formik
         initialValues={{
           id: location.state.id,
-          image: location.state.image,
-          description: location.state.description,
-          author_id: location.state.id,
-          like_count: location.state.like_count,
+          email: location.state.email,
+          firstName: location.state.firstName,
+          lastName: location.state.lastName,
+          roles: location.state.roles,
         }}
         enableReinitialize
         onSubmit={handleSubmit}
@@ -54,15 +55,31 @@ const UpdatePost: React.FC = () => {
               placeholder="Enter the URL of the image"
               fullWidth
               onChange={props.handleChange}
-              value={props.values.image}
+              value={props.values.email}
             />
             <TextField
-              id="description"
-              label="Description"
-              placeholder="Enter the description"
+              id="image"
+              label="Image URL"
+              placeholder="Enter the URL of the image"
               fullWidth
               onChange={props.handleChange}
-              value={props.values.description}
+              value={props.values.firstName}
+            />
+            <TextField
+              id="image"
+              label="Image URL"
+              placeholder="Enter the URL of the image"
+              fullWidth
+              onChange={props.handleChange}
+              value={props.values.lastName}
+            />
+            <TextField
+              id="image"
+              label="Image URL"
+              placeholder="Enter the URL of the image"
+              fullWidth
+              onChange={props.handleChange}
+              value={props.values.roles}
             />
             <Button
               type="submit"
@@ -81,4 +98,4 @@ const UpdatePost: React.FC = () => {
   );
 };
 
-export default UpdatePost;
+export default UpdateUser;

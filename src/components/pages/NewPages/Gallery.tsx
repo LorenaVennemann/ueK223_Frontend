@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../organisms/Navbar";
-import { Grid, Card, CardMedia, CardContent, Typography, Button } from "@mui/material";
+import {
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+} from "@mui/material";
 import PostService from "../../../Services/PostService";
 import { Link } from "react-router-dom";
 import LikeButton from "../../atoms/LikeButton";
- 
+
 const ImageGalleryPage = () => {
   const [posts, setPosts] = useState([]);
   const reloadPage = () => {
     window.location.reload();
-  }
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -20,10 +27,10 @@ const ImageGalleryPage = () => {
         console.error("Error fetching posts:", error);
       }
     };
- 
+
     fetchPosts();
   }, []);
- 
+
   return (
     <>
       <Typography variant="h6" component="div">
@@ -33,7 +40,7 @@ const ImageGalleryPage = () => {
         {posts.map((post) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={post["id"]}>
             <Card>
-            <CardMedia
+              <CardMedia
                 component="img"
                 alt={post["author"]}
                 height="140"
@@ -61,16 +68,12 @@ const ImageGalleryPage = () => {
                   variant="outlined"
                   color="error"
                   onClick={() => {
-                    PostService.deletePost(post['id']).then(reloadPage);
-
-                    
+                    PostService.deletePost(post["id"]).then(reloadPage);
                   }}
-                  component={Link}
-                  to={`/gallery/`}
                 >
                   Delete
                 </Button>
-                <LikeButton/>
+                <LikeButton />
               </CardContent>
             </Card>
           </Grid>

@@ -1,17 +1,17 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { User } from '../../../../types/models/User.model';
-import UserService from '../../../../Services/UserService';
-import UserForm from '../../../molecules/UserForm';
-import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
+import { User } from "../../../../types/models/User.model";
+import UserService from "../../../../Services/UserService";
+import UserForm from "../../../molecules/UserForm";
+import { useEffect, useState } from "react";
 
 const UserPage = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
   const [user, setUser] = useState<User>({
-    id: '',
-    firstName: '',
-    lastName: '',
-    email: '',
+    id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
     roles: [],
   });
 
@@ -28,15 +28,22 @@ const UserPage = () => {
   const submitActionHandler = (values: User) => {
     if (userId !== undefined) {
       UserService.updateUser(values).then(() => {
-        navigate('../users');
+        navigate("../users");
       });
     } else {
       UserService.addUser(values).then(() => {
-        navigate('/users');
+        navigate("/users");
       });
     }
   };
 
-  return <UserForm user={user} submitActionHandler={submitActionHandler} isAllowedEditRoles={false} showPasswordField={false} />;
+  return (
+    <UserForm
+      user={user}
+      submitActionHandler={submitActionHandler}
+      isAllowedEditRoles={false}
+      showPasswordField={false}
+    />
+  );
 };
 export default UserPage;

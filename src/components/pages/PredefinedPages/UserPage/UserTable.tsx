@@ -1,11 +1,11 @@
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import { useEffect, useState } from 'react';
-import { User } from '../../../../types/models/User.model';
-import UserService from '../../../../Services/UserService';
-import { useNavigate } from 'react-router-dom';
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import { useEffect, useState } from "react";
+import { User } from "../../../../types/models/User.model";
+import UserService from "../../../../Services/UserService";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserTable = () => {
   const navigate = useNavigate();
@@ -18,17 +18,12 @@ const UserTable = () => {
   }, []);
 
   const handleAdd = () => {
-    navigate('../useredit/');
+    navigate("../user/add/");
   };
 
-  const handleEdit = (id: string) => {
-    navigate('../useredit/' + id);
+  const reloadPage = () => {
+    window.location.reload();
   };
-
-  const handleDelete = (id: string) => {
-    UserService.deleteUser(id);
-  };
-
   return (
     <>
       {users.map((user) => (
@@ -38,18 +33,24 @@ const UserTable = () => {
               {user.firstName} {user.lastName} {user.email}
               <CardActions>
                 <Button
-                  size='small'
-                  color='primary'
-                  variant='contained'
-                  onClick={() => handleEdit(user.id)}
+                  size="small"
+                  color="primary"
+                  variant="contained"
+                  state = {user}
+                  onClick={() => {
+                    UserService.deleteUser(user["id"]).then(reloadPage);
+                  }}
+                  component = {Link}
+                  to = {`../useredit/`}
                 >
                   Edit
                 </Button>
                 <Button
-                  size='small'
-                  color='error'
-                  variant='contained'
-                  onClick={() => handleDelete(user.id)}
+                  variant="outlined"
+                  color="error"
+                  onClick={() => {
+                    UserService.deleteUser(user["id"]).then(reloadPage);
+                  }}
                 >
                   Delete
                 </Button>
@@ -59,9 +60,9 @@ const UserTable = () => {
         </div>
       ))}
       <Button
-        size='small'
-        color='success'
-        variant='contained'
+        size="small"
+        color="success"
+        variant="contained"
         onClick={handleAdd}
       >
         Add
