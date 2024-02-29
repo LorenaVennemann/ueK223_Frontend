@@ -8,6 +8,7 @@ import UserPage from "../components/pages/PredefinedPages/UserPage/UserPage";
 import authorities from "../config/Authorities";
 import UpdatePost from "../components/pages/NewPages/UpdatePost";
 import Gallery from "../components/pages/NewPages/Gallery";
+import ProfilePage from "../components/pages/PredefinedPages/UserPage/ProfilePage";
 
 
 
@@ -23,14 +24,13 @@ const Router = () => {
 
   return (
     <Routes>
-      <Routes>
-  <Route path={"/"} element={<HomePage />} />
-  <Route path={"/login"} element={<LoginPage />} />
-  <Route path={"/post"} element={<PostPicturePage />} />
-  <Route path={"/gallery"} element={<Gallery />} />
-  <Route path={"/update-post"} element={<UpdatePost />} />
-</Routes>
-
+      <Route path={"/"} element={<HomePage />} />
+      <Route path={"/login"} element={<LoginPage />} />
+      <Route path={"/post"} element={<PostPicturePage />} />
+      <Route path={"/gallery"} element={<Gallery />} />
+      <Route path={"/update-post"} element={<UpdatePost />} />
+      <Route path={"/profile"} element={<ProfilePage />} />
+      
 
       <Route
         path={"/users"}
