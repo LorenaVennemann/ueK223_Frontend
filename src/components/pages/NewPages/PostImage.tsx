@@ -7,7 +7,7 @@ import { useContext } from "react";
 import ActiveUserContext from "../../../Contexts/ActiveUserContext";
 
 const PostPicture = () => {
-  const { user } = useContext(ActiveUserContext);
+  const { user } = useContext(ActiveUserContext); // Access the active user from context.
 
   const paperStyle = {
     padding: 20,
@@ -18,6 +18,7 @@ const PostPicture = () => {
   const navigate = useNavigate();
   const btnstyle = { margin: "8px 0" };
 
+  // Function to handle form submission.
   const handleSubmit = async (values: {
     id: string;
     image: string;
@@ -26,11 +27,11 @@ const PostPicture = () => {
     like_count: 0;
   }) => {
     try {
-      await PostService.addPost(values);
-      console.log("Post added successfully:", values);
-      navigate("/gallery");
+      await PostService.addPost(values); // Call the service to add a post.
+      console.log("Post added successfully:", values); // Log success message.
+      navigate("/gallery"); // Navigate to the gallery page.
     } catch (error) {
-      console.error("Error adding post:", error);
+      console.error("Error adding post:", error); // Log any errors.
     }
   };
 

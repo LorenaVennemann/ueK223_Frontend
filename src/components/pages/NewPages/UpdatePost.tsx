@@ -4,9 +4,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import PostService from "../../../Services/PostService";
 import Navbar from "../../organisms/Navbar";
 
+// Define the UpdatePost component.
 const UpdatePost: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  
+  // Function to handle form submission.
   const handleSubmit = async (values: {
     id: string;
     image: string;
@@ -15,11 +18,11 @@ const UpdatePost: React.FC = () => {
     like_count: number;
   }) => {
     try {
-      await PostService.updatePost(values);
-      console.log("Post erfolgreich aktualisiert:", values);
-      navigate("/gallery");
+      await PostService.updatePost(values); // Call the service to update the post.
+      console.log("Post erfolgreich aktualisiert:", values); // Log success message (in German).
+      navigate("/gallery"); // Navigate to the gallery page.
     } catch (error) {
-      console.error("Fehler beim Aktualisieren des Posts:", error);
+      console.error("Fehler beim Aktualisieren des Posts:", error); // Log any errors (in German).
     }
   };
 
